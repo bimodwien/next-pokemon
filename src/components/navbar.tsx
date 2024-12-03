@@ -8,15 +8,15 @@ import { Search, X } from "lucide-react";
 const Navbar = () => {
   const [isSearchVisible, setIsSearchVisible] = React.useState(false);
   return (
-    <nav className="border-b">
-      <div className="flex h-16 items-center md:gap-4">
+    <nav className="border-b w-full">
+      <div className="flex h-16 items-center px-4 max-w-screen-2xl mx-auto">
         <div className="flex items-center gap-2 md:gap-4">
-          <Link href={"/"} className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <span className="inline-block font-bold text-xl">POKE</span>
           </Link>
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <form action="" className="hidden md:block">
+          <form className="hidden md:block">
             <div className="relative">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
@@ -27,8 +27,8 @@ const Navbar = () => {
             </div>
           </form>
           <Button
-            variant={"ghost"}
-            size={"icon"}
+            variant="ghost"
+            size="icon"
             className="md:hidden"
             onClick={() => setIsSearchVisible(!isSearchVisible)}
           >
@@ -37,15 +37,15 @@ const Navbar = () => {
             ) : (
               <Search className="h-5 w-5" />
             )}
-            <span className="sr-only">Toggle Search</span>
+            <span className="sr-only">Toggle search</span>
           </Button>
         </div>
       </div>
       {isSearchVisible && (
         <div className="md:hidden px-4 pb-4">
-          <form action="">
+          <form>
             <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4  text-muted-foreground" />
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search..."
