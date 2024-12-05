@@ -59,7 +59,9 @@ export default function Home() {
       <main className="flex-1">
         <div className="max-w-screen-2xl mx-auto px-4 py-8">
           <h1 className="text-3xl font-bold mb-4">Welcome to Pokemon Web</h1>
-          <p className="text-lg mb-4">This is Pokemon website with PokeAPI</p>
+          <p className="text-lg mb-4">
+            This is just simple Pokemon website with PokeAPI
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-4">
             {displayPokemon.map((pokemon: IPokemon) => {
               const id = pokemon.url.split("/")[6];
