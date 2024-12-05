@@ -12,6 +12,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Image from "next/image";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState<IPokemon[]>([]);
@@ -67,9 +68,11 @@ export default function Home() {
                   key={pokemon.name}
                   className="flex flex-col items-center p-4 border rounded-lg shadow-sm"
                 >
-                  <img
+                  <Image
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
                     alt={pokemon.name}
+                    width={96}
+                    height={96}
                     className="h-24 w-24 mb-2"
                   />
                   <p className="text-center capitalize">{pokemon.name}</p>
