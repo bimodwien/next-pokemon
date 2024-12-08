@@ -13,6 +13,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState<IPokemon[]>([]);
@@ -57,7 +58,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <Navbar onSearch={handleSearch} />
       <main className="flex-1">
-        <div className="max-w-screen-2xl mx-auto px-4 py-8">
+        <div className="max-w-screen-2xl mx-auto px-4 py-4">
           <h1 className="text-3xl font-bold mb-4">Welcome to Pokemon Web</h1>
           <p className="text-lg mb-4">
             This is just simple Pokemon website with PokeAPI
@@ -66,19 +67,18 @@ export default function Home() {
             {displayPokemon.map((pokemon: IPokemon) => {
               const id = pokemon.url.split("/")[6];
               return (
-                <div
-                  key={pokemon.name}
-                  className="flex flex-col items-center p-4 border rounded-lg shadow-sm"
-                >
-                  <Image
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-                    alt={pokemon.name}
-                    width={96}
-                    height={96}
-                    className="h-24 w-24 mb-2"
-                  />
-                  <p className="text-center capitalize">{pokemon.name}</p>
-                </div>
+                <Link href={`/details/${id}`} key={pokemon.name}>
+                  <div className="flex flex-col items-center p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                    <Image
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+                      alt={pokemon.name}
+                      width={96}
+                      height={96}
+                      className="h-24 w-24 mb-2"
+                    />
+                    <p className="text-center capitalize">{pokemon.name}</p>
+                  </div>
+                </Link>
               );
             })}
           </div>
