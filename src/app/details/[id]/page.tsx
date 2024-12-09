@@ -5,13 +5,13 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { IAbility, IType, IStat, IPokemonDetails } from "@/models/pokemon";
-import { Metadata } from "next";
 import NavbarDetail from "@/components/navbar-details";
+import { Metadata } from "next";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 async function getPokemonDetails(id: string): Promise<IPokemonDetails | null> {
@@ -30,14 +30,16 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const pokemon = await getPokemonDetails(params.id);
+  const { id } = await params;
+  const pokemon = await getPokemonDetails(id);
   return {
     title: pokemon ? `${pokemon.name} - Pokemon Details` : "Pokemon Details",
   };
 }
 
 export default async function Details({ params }: PageProps) {
-  const pokemon = await getPokemonDetails(params.id);
+  const { id } = await params;
+  const pokemon = await getPokemonDetails(id);
 
   if (!pokemon) {
     notFound();
