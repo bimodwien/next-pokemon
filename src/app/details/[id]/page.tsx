@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { IAbility, IType, IStat } from "@/models/pokemon";
+import NavbarDetail from "@/components/navbar-details";
 
 async function getPokemonDetails(id: string) {
   const axios = axiosInstance();
@@ -26,6 +27,7 @@ async function Details({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-gray-100">
+      <NavbarDetail />
       <div className="max-w-4xl mx-auto py-8 px-4">
         <Link href="/">
           <Button className="mb-4" variant={"outline"}>
@@ -54,7 +56,10 @@ async function Details({ params }: { params: { id: string } }) {
                   <div className="flex flex-wrap gap-2">
                     {pokemon.types.map((type: IType) => {
                       return (
-                        <span className="px-3 py-1 bg-gray-200 rounded-full text-sm">
+                        <span
+                          key={type.type.name}
+                          className="px-3 py-1 bg-gray-200 rounded-full text-sm"
+                        >
                           {type.type.name}
                         </span>
                       );
@@ -66,7 +71,9 @@ async function Details({ params }: { params: { id: string } }) {
                   <ul className="list-disc list-inside">
                     {pokemon.abilities.map((ability: IAbility) => {
                       return (
-                        <li className="capitalize">{ability.ability.name}</li>
+                        <li key={ability.ability.name} className="capitalize">
+                          {ability.ability.name}
+                        </li>
                       );
                     })}
                   </ul>
